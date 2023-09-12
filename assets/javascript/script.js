@@ -1,3 +1,4 @@
+
 let questions = [
     {
         id: 1,
@@ -73,35 +74,81 @@ let questions = [
 ];
 
 let question_count = 0;
+let startQuizEl = document.querySelector("#start-button");
 
-window.onload = function() {
-    show(question_count);
-};
+startQuizEl.addEventListener("click", function () {
+    return questions;
+})
 
-function show(count) {
-    let question = document.getElementById("questions");
-    let [first, second, third, fourth] = questions[count].options;
 
-    question.innerHTML = '<h2>Q${count + 1}. ${questions[count].question}</h2>
-    <ul class="option=group">
-        <li class="option">${first}</li>
-        <li class="option">${second}</li>
-        <li class="option">${thirdt}</li>
-        <li class="option">${fourth}</li>
-    </ul>';
-    toggleActive();
-}
 
-function toogleActive() {
-    let option = document.querySelectorAll("li.option");
-    for(let i = 0; i < option.length; i++) {
-        option[i].onclick = function() {
-            for(let i=0; i < option.length; i++) {
-                if(option[i].classList.contains("active")) {
-                    option[i].classList.remove("active");
-                }
-            }
-            option[i].classList.add("active");
+
+
+
+
+
+
+
+
+let timerEl = document.getElementById('countdown');
+
+function countdown() {
+    var timeLeft = 75;
+
+    var timeInterval = setInterval(function () {
+        if (timeLeft > 1) {
+            timerEl.textContent = timeLeft
+            timeLeft--;
+        } else {
+            timerEl.textContent = '';
+            clearInterval(timeInterval);
+            return "Game Over!"
         }
-    }
+    }, 1000);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// window.onload = function() {
+//     show(question_count);
+// };
+
+// function show(count) {
+//     let question = document.getElementById("questions");
+//     let [first, second, third, fourth] = questions[count].options;
+
+//     question.innerHTML = <h2>Q${count + 1}. ${questions[count].question}</h2>
+//     <ul class="option=group">
+//         <li class="option">${first}</li>
+//         <li class="option">${second}</li>
+//         <li class="option">${thirdt}</li>
+//         <li class="option">${fourth}</li>
+//     </ul>;
+//     toggleActive();
+// }
+
+// function toogleActive() {
+//     let option = document.querySelectorAll("li.option");
+//     for(let i = 0; i < option.length; i++) {
+//         option[i].onclick = function() {
+//             for(let i=0; i < option.length; i++) {
+//                 if(option[i].classList.contains("active")) {
+//                     option[i].classList.remove("active");
+//                 }
+//             }
+//             option[i].classList.add("active");
+//         }
+//     }
+// }
