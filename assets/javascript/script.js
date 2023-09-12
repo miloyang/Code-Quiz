@@ -1,99 +1,86 @@
 
-let questions = [
+let quizQuestions = [
     {
         id: 1,
-        questions: "Inside which HTML element do we put the JavaScript?",
-        answer: "<script>",
+        question: "Inside which HTML element do we put the JavaScript?",
+        answer: "A. <script>",
         option: [
-            "<script>",
-            "<scripting>",
-            "<js>",
-            "<javascript>"
+            "A. <script>",
+            "B. <scripting>",
+            "C. <js>",
+            "D. <javascript>"
         ]
     },
 
     {
         id: 2,
-        questions: "Where is the correct place to insert a JavaScript?",
-        answer: "Both the <head> secctin and the <body> section are correct",
+        question: "Where is the correct place to insert a JavaScript?",
+        answer: "B. Both the <head> secctin and the <body> section are correct",
         option: [
-            "The <head> section",
-            "Both the <head> secctin and the <body> section are correct",
-            "The <body> section",
-            "None of the above"
+            "A. The <head> section",
+            "B. Both the <head> secctin and the <body> section are correct",
+            "C. The <body> section",
+            "D. None of the above"
         ]
     },
 
     {
         id: 3,
-        questions: "What is the default value of the position property?",
-        answer: "static",
+        question: "What is the default value of the position property?",
+        answer: "A. static",
         option: [
-            "static",
-            "relative",
-            "fixed",
-            "absolute"
+            "A. static",
+            "B. relative",
+            "C. fixed",
+            "D. absolute"
         ]
     },
 
     {
         id: 4,
-        questions: "What does CSS stand for?",
-        answer: "Cascading Style Sheets",
+        question: "What does CSS stand for?",
+        answer: "D. Cascading Style Sheets",
         option: [
-            "Creative Style Sheets",
-            "Colorful Style Sheets",
-            "Computer Style Sheets",
-            "Cascading Style Sheets"
+            "A. Creative Style Sheets",
+            "B. Colorful Style Sheets",
+            "C. Computer Style Sheets",
+            "D. Cascading Style Sheets"
         ]
     },
 
     {
         id: 5,
-        questions: "Choose the correct HTML element for the largest heading:",
-        answer: "<h1>",
+        question: "Choose the correct HTML element for the largest heading:",
+        answer: "C. <h1>",
         option: [
-            "<heading>",
-            "<head>",
-            "<h1>",
-            "<h6>"
+            "A. <heading>",
+            "B. <head>",
+            "C. <h1>",
+            "D. <h6>"
         ]
     },
 
     {
         id: 6,
-        questions: "What is the correct HTML element for inserting a line break?",
-        answer: "<br>",
+        question: "What is the correct HTML element for inserting a line break?",
+        answer: "A. <br>",
         option: [
-            "<br>",
-            "<break>",
-            "<lb>",
-            "<line break>"
+            "A. <br>",
+            "B. <break>",
+            "C. <lb>",
+            "D. <line break>"
         ]
     },
 ];
 
-let question_count = 0;
+let quizQuestions_count = 0;
 let startQuizEl = document.querySelector("#start-button");
-
-startQuizEl.addEventListener("click", function () {
-    return questions;
-})
-
-
-
-
-
-
-
-
-
-
+let questionEl = document.querySelector("#question");
 
 let timerEl = document.getElementById('countdown');
 
-function countdown() {
-    var timeLeft = 75;
+startQuizEl.addEventListener("click", function () {
+    var timeLeft = 60;
 
     var timeInterval = setInterval(function () {
         if (timeLeft > 1) {
@@ -102,10 +89,46 @@ function countdown() {
         } else {
             timerEl.textContent = '';
             clearInterval(timeInterval);
-            return "Game Over!"
+            // return "Game Over!"
         }
     }, 1000);
-}
+
+    let homeEl = document.getElementById('home');
+    homeEl.classList.add('hide');
+
+    let questionEl = document.getElementById('question');
+    questionEl.classList.remove('hide');
+
+    displayQuestion();
+})
+
+var index = 0;
+
+function displayQuestion() {
+    let questionTitleEl = document.getElementById('questionTitle');
+    questionTitleEl.textContent = quizQuestions[index].question ;
+
+    let option1El = document.getElementById('option1');
+    option1El.textContent = quizQuestions[index].option[0];
+
+    let option2El = document.getElementById('option2');
+    option2El.textContent = quizQuestions[index].option[1];
+
+    let option3El = document.getElementById('option3');
+    option3El.textContent = quizQuestions[index].option[2];
+
+    let option4El = document.getElementById('option4');
+    option4El.textContent = quizQuestions[index].option[3];
+} 
+
+
+//write another function for increament index
+
+
+
+
+
+
 
 
 
