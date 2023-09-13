@@ -113,7 +113,7 @@ startQuizEl.addEventListener("click", function () {
 
 var index = 0;
 
-function displayQuestion() {
+function displayQuestion(event) {
     questionTitleEl.textContent = quizQuestions[index].question;
 
     option1El.textContent = quizQuestions[index].option[0];
@@ -123,10 +123,63 @@ function displayQuestion() {
 
     if (quizQuestions.option === quizQuestions.answer) {
         index++;
-        return "Correct!";
-    } else return "Wrong!";
-    timeLeft-5;
-}   
+        return "Correct!"
+    } else {
+        index++;
+        timeLeft = timeLeft - 5;
+        return "Wrong!"
+    }
+}
+
+var optionElement = document.getElementsByClassName('option')
+var optionElements = document.getElementsByClassName('option');
+
+for (var i = 1; i < optionElements.length; i++) {
+    optionElements[i].addEventListener('click', displayQuestion);
+}
+
+// // Pass the event through the function
+// function displayQuestion(event) {
+//     // Lets log the event to see which element we are clicking
+console.log(event?.target);
+//     questionTitleEl.textContent = quizQuestions[index].question;
+
+//     option1El.textContent = quizQuestions[index].option[0];
+//     option2El.textContent = quizQuestions[index].option[1];
+//     option3El.textContent = quizQuestions[index].option[2];
+//     option4El.textContent = quizQuestions[index].option[3];
+
+//     if (quizQuestions.option === quizQuestions.answer) {
+//         index++;
+//         return "Correct!";
+//     } else {
+//         index++;
+//         timeLeft -= 5;
+//         return "Wrong!";
+//     }
+// }
+
+// Lets log the event to see which element we are clicking
+console.log(event?.target.innerText);
+
+
+
+
+
+
+
+
+
+
+
+
+// function gameOVer() {
+//     let
+// }
+
+
+
+
 
 
 // nextQuestion() {
