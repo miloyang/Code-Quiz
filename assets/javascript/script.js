@@ -87,8 +87,9 @@ let quizQuestions = [
     },
 ];
 
+var timeLeft = 60;
+
 startQuizEl.addEventListener("click", function () {
-    var timeLeft = 60;
 
     var timeInterval = setInterval(function () {
         if (timeLeft > 1) {
@@ -119,10 +120,19 @@ function displayQuestion() {
     option2El.textContent = quizQuestions[index].option[1];
     option3El.textContent = quizQuestions[index].option[2];
     option4El.textContent = quizQuestions[index].option[3];
-}
+
+    if (quizQuestions.option === quizQuestions.answer) {
+        index++;
+        return "Correct!";
+    } else return "Wrong!";
+    timeLeft-5;
+}   
+
 
 // nextQuestion() {
 //     for (var i = 0; i < quizQuestions.question.length; i++) {
+//         if (quizQuestions.option == quizQuestions.answer);
+//         console.log(correct!);
 //         displayQuestion(index);
 //     }
 // }
