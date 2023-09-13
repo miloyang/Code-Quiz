@@ -106,7 +106,7 @@ var index = 0;
 
 function displayQuestion() {
     let questionTitleEl = document.getElementById('questionTitle');
-    questionTitleEl.textContent = quizQuestions[index].question ;
+    questionTitleEl.textContent = quizQuestions[index].question;
 
     let option1El = document.getElementById('option1');
     option1El.textContent = quizQuestions[index].option[0];
@@ -119,7 +119,16 @@ function displayQuestion() {
 
     let option4El = document.getElementById('option4');
     option4El.textContent = quizQuestions[index].option[3];
-} 
+}
+
+
+
+
+// optionEl.addEventListener("click", funtion() {
+//     index++;
+//     displayQuestion(index);
+// })
+
 
 
 //write another function for increament index
