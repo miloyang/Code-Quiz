@@ -1,3 +1,17 @@
+let quizQuestions_count = 0;
+let startQuizEl = document.querySelector("#start-button");
+let questionEl = document.querySelector("#question");
+let timerEl = document.getElementById('countdown');
+let questionTitleEl = document.getElementById('questionTitle');
+let option1El = document.getElementById('option1');
+let option2El = document.getElementById('option2');
+let option3El = document.getElementById('option3');
+let option4El = document.getElementById('option4');
+let finalScoreEl = document.getElementById('final-score');
+let initialsFormEl = document.getElementById('initials-form');
+let initialsEl = document.getElementById('initials');
+let submitEl = document.getElementById('submit');
+
 
 let quizQuestions = [
     {
@@ -73,12 +87,6 @@ let quizQuestions = [
     },
 ];
 
-let quizQuestions_count = 0;
-let startQuizEl = document.querySelector("#start-button");
-let questionEl = document.querySelector("#question");
-
-let timerEl = document.getElementById('countdown');
-
 startQuizEl.addEventListener("click", function () {
     var timeLeft = 60;
 
@@ -105,23 +113,19 @@ startQuizEl.addEventListener("click", function () {
 var index = 0;
 
 function displayQuestion() {
-    let questionTitleEl = document.getElementById('questionTitle');
     questionTitleEl.textContent = quizQuestions[index].question;
 
-    let option1El = document.getElementById('option1');
     option1El.textContent = quizQuestions[index].option[0];
-
-    let option2El = document.getElementById('option2');
     option2El.textContent = quizQuestions[index].option[1];
-
-    let option3El = document.getElementById('option3');
     option3El.textContent = quizQuestions[index].option[2];
-
-    let option4El = document.getElementById('option4');
     option4El.textContent = quizQuestions[index].option[3];
 }
 
-
+// nextQuestion() {
+//     for (var i = 0; i < quizQuestions.question.length; i++) {
+//         displayQuestion(index);
+//     }
+// }
 
 
 // optionEl.addEventListener("click", funtion() {
@@ -131,56 +135,4 @@ function displayQuestion() {
 
 
 
-//write another function for increament index
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// window.onload = function() {
-//     show(question_count);
-// };
-
-// function show(count) {
-//     let question = document.getElementById("questions");
-//     let [first, second, third, fourth] = questions[count].options;
-
-//     question.innerHTML = <h2>Q${count + 1}. ${questions[count].question}</h2>
-//     <ul class="option=group">
-//         <li class="option">${first}</li>
-//         <li class="option">${second}</li>
-//         <li class="option">${thirdt}</li>
-//         <li class="option">${fourth}</li>
-//     </ul>;
-//     toggleActive();
-// }
-
-// function toogleActive() {
-//     let option = document.querySelectorAll("li.option");
-//     for(let i = 0; i < option.length; i++) {
-//         option[i].onclick = function() {
-//             for(let i=0; i < option.length; i++) {
-//                 if(option[i].classList.contains("active")) {
-//                     option[i].classList.remove("active");
-//                 }
-//             }
-//             option[i].classList.add("active");
-//         }
-//     }
-// }

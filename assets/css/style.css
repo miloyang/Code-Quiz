@@ -5,6 +5,12 @@
     --font: Arial, Helvetica, sans-serif;
 }
 
+body {
+    margin-left: 50px;
+    margin-right: 50px;
+    justify-content: center;
+}
+
 .header-container {
     display: flex;
 }
@@ -41,7 +47,7 @@ p {
     text-align: center;
     font-family: var(--font);
     font-size: 20px;
-    padding: 10px;
+    padding: 20px;
 }
 
 .start-button,
@@ -53,12 +59,12 @@ p {
     text-align: center;
     font-family: var(--font);
     font-size: 20px;
-    padding: 10px;
+    padding: 8px;
     margin: 10px;
     background-color: var(--dark-purple);
     color: var(--white);
     border: none;
-    border-radius: 8%;
+    border-radius: 5%;
     text-decoration: none;
 }
 
@@ -82,8 +88,8 @@ p {
     flex: 0 0 100%;
     justify-content: center;
     padding: 50px;
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 h2 {
@@ -103,7 +109,7 @@ h2 {
     background-color: var(--dark-purple);
     color: var(--white);
     border: none;
-    border-radius: 8%;
+    border-radius: 5%;
     text-decoration: none;
     cursor: pointer;
     width: max-content;
