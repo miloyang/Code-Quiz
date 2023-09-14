@@ -13,6 +13,8 @@ let initialsEl = document.getElementById('initials');
 let submitEl = document.getElementById('submit');
 let finalScorePageEl = document.getElementById('final-score-page');
 let countdownEl = document.getElementById('countdown');
+let highscoresListEl = document.getElementById('highscores-list');
+let initialsInputEl = document.getElementById('initials');
 
 let quizQuestions = [
     {
@@ -91,6 +93,8 @@ let quizQuestions = [
 var timeLeft = 60;
 var index = 0;
 var correctAnswers = 0;
+var timeInterval;
+var highscores = [];
 
 function displayQuestion(event) {
     // Lets log the event to see which element we are clicking
@@ -101,15 +105,6 @@ function displayQuestion(event) {
     option2El.textContent = quizQuestions[index].option[1];
     option3El.textContent = quizQuestions[index].option[2];
     option4El.textContent = quizQuestions[index].option[3];
-
-    // if (quizQuestions.option === quizQuestions.answer) {
-    //     index++;
-    //     return "Correct!"
-    // } else {
-    //     index++;
-    //     timeLeft = timeLeft - 5;
-    //     return "Wrong!"
-    // }
 
     // Lets log the event to see which element we are clicking
     // console.log(event?.target.innerText);
@@ -130,11 +125,9 @@ function checkAnswer(selectedOption) {
     }
 }
 
-var timeInterval;
-
 function endQuiz() {
     clearInterval(timeInterval);
-    countdownEl.classList.add('hide');
+    // countdownEl.classList.add('hide');
     questionEl.classList.add('hide');
     finalScoreEl.textContent = "Your final score: " + correctAnswers;
     finalScorePageEl.classList.remove('hide');
@@ -177,101 +170,36 @@ for (var i = 0; i < optionElements.length; i++) {
 
 
 
+initialsFormEl.addEventListener("submit", function (event) {
+    event.preventDefault();
 
+    // Retrieve highscores from local storage and initialize if null
+    let highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 
+    let initialsInput = initialsInputEl.value.trim(); // Use the correct element
 
+    if (initialsInput === "") {
+        return; // Do nothing if initialsInput is empty
+    }
 
+    // Create a new score entry object 
+    let scoreEntry = {
+        initials: initialsInput,
+        score: finalScoreEl
+    };
 
+    highscores.push(scoreEntry);
 
+    // Store the updated highscores array in local storage
+    localStorage.setItem("highscores", JSON.stringify(highscores));
 
+    // Redirect to the highscores.html page
+    window.location.replace("highscores.html");
+});
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Pass the event through the function
-// function displayQuestion(event) {
-//     // Lets log the event to see which element we are clicking
-// console.log(event?.target);
-//     questionTitleEl.textContent = quizQuestions[index].question;
-
-//     option1El.textContent = quizQuestions[index].option[0];
-//     option2El.textContent = quizQuestions[index].option[1];
-//     option3El.textContent = quizQuestions[index].option[2];
-//     option4El.textContent = quizQuestions[index].option[3];
-
-//     if (quizQuestions.option === quizQuestions.answer) {
-//         index++;
-//         return "Correct!";
-//     } else {
-//         index++;
-//         timeLeft -= 5;
-//         return "Wrong!";
-//     }
-// }
-
-// Lets log the event to see which element we are clicking
-// console.log(event?.target.innerText);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// nextQuestion() {
-//     for (var i = 0; i < quizQuestions.question.length; i++) {
-//         if (quizQuestions.option == quizQuestions.answer);
-//         console.log(correct!);
-//         displayQuestion(index);
-//     }
-// }
-
-
-// optionEl.addEventListener("click", funtion() {
-//     index++;
-//     displayQuestion(index);
-// })
 
 
 
