@@ -11,7 +11,8 @@ let finalScoreEl = document.getElementById('final-score');
 let initialsFormEl = document.getElementById('initials-form');
 let initialsEl = document.getElementById('initials');
 let submitEl = document.getElementById('submit');
-
+let finalScorePageEl = document.getElementById('final-score-page');
+let countdownEl = document.getElementById('countdown');
 
 let quizQuestions = [
     {
@@ -91,8 +92,9 @@ var timeLeft = 60;
 var index = 0;
 var correctAnswers = 0;
 
-
-function displayQuestion() {
+function displayQuestion(event) {
+    // Lets log the event to see which element we are clicking
+    // console.log(event?.target);
     questionTitleEl.textContent = quizQuestions[index].question;
 
     option1El.textContent = quizQuestions[index].option[0];
@@ -108,8 +110,10 @@ function displayQuestion() {
     //     timeLeft = timeLeft - 5;
     //     return "Wrong!"
     // }
-}
 
+    // Lets log the event to see which element we are clicking
+    // console.log(event?.target.innerText);
+}
 
 function checkAnswer(selectedOption) {
     if (selectedOption === quizQuestions[index].answer) {
@@ -126,23 +130,15 @@ function checkAnswer(selectedOption) {
     }
 }
 
+var timeInterval;
+
 function endQuiz() {
     clearInterval(timeInterval);
+    countdownEl.classList.add('hide');
     questionEl.classList.add('hide');
     finalScoreEl.textContent = "Your final score: " + correctAnswers;
-    initialsFormEl.classList.remove('hide');
+    finalScorePageEl.classList.remove('hide');
 }
-
-var timeInterval = setInterval(function () {
-    if (timeLeft > 1) {
-        timerEl.textContent = timeLeft
-        timeLeft--;
-    } else {
-        timerEl.textContent = '';
-        clearInterval(timeInterval);
-        return endQuizr();
-    }
-}, 1000);
 
 startQuizEl.addEventListener("click", function () {
     let homeEl = document.getElementById('home');
@@ -152,23 +148,27 @@ startQuizEl.addEventListener("click", function () {
 
     displayQuestion();
 
-    // var timeInterval = setInterval(function () {
-    //     if (timeLeft > 1) {
-    //         timerEl.textContent = timeLeft
-    //         timeLeft--;
-    //     } else {
-    //         timerEl.textContent = '';
-    //         clearInterval(timeInterval);
-    //         return endQuizr();
-    //     }
-    // }, 1000);
+    startTimer();
 });
+
+function startTimer() {
+    timeInterval = setInterval(function () {
+        if (timeLeft > 1) {
+            timerEl.textContent = timeLeft;
+            timeLeft--;
+        } else {
+            timerEl.textContent = '';
+            clearInterval(timeInterval);
+            endQuiz();
+        }
+    }, 1000);
+}
 
 
 var optionElement = document.getElementsByClassName('option')
 var optionElements = document.getElementsByClassName('option');
 
-for (var i = 1; i < optionElements.length; i++) {
+for (var i = 0; i < optionElements.length; i++) {
     optionElements[i].addEventListener('click', function (event) {
         let selectedOption = event.target.textContent;
         checkAnswer(selectedOption);
