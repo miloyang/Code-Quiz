@@ -52,7 +52,7 @@ p {
 
 .start-button,
 .clear-highscores-button,
-.go-back {
+.go-back, .submit-button {
     display: flex;
     justify-content: center;
     cursor: pointer;
@@ -70,7 +70,7 @@ p {
 
 .start-button:hover,
 .clear-highscores-button:hover,
-.go-back:hover {
+.go-back:hover, .submit-button:hover {
     background-color: var(--light-purple);
 }
 

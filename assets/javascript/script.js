@@ -1,3 +1,4 @@
+//Selecting the elements by ids
 let startQuizEl = document.querySelector("#start-button");
 let questionEl = document.querySelector("#question");
 let timerEl = document.getElementById('countdown');
@@ -12,7 +13,9 @@ let submitEl = document.getElementById('submit');
 let finalScorePageEl = document.getElementById('final-score-page');
 let highscoresListEl = document.getElementById('highscores-list');
 let initialsInputEl = document.getElementById('initials');
+let optionElements = document.getElementsByClassName('option');
 
+//Setting the quiz questions, answers and options in an object
 let quizQuestions = [
     {
         id: 1,
@@ -87,12 +90,26 @@ let quizQuestions = [
     },
 ];
 
+//Setting the variables
 var timeLeft = 60;
 var index = 0;
 var correctAnswers = 0;
 var timeInterval;
 var highscores = [];
 
+//Creating an event listener for when the user clicks on startQuiz Element
+startQuizEl.addEventListener("click", function () {
+    let homeEl = document.getElementById('home');
+    homeEl.classList.add('hide');
+
+    questionEl.classList.remove('hide');
+
+    displayQuestion();
+
+    startTimer();
+});
+
+//Creating a function to display questions when the startQuiz element is clicked on
 function displayQuestion(event) {
     // Lets log the event to see which element we are clicking
     // console.log(event?.target);
@@ -107,6 +124,7 @@ function displayQuestion(event) {
     // console.log(event?.target.innerText);
 }
 
+//Creating a function to instruct what happens if the user clicks on correct or wrong answers.
 function checkAnswer(selectedOption) {
     if (selectedOption === quizQuestions[index].answer) {
         correctAnswers++;
@@ -122,6 +140,7 @@ function checkAnswer(selectedOption) {
     }
 }
 
+//Creating a function when all questions have been answered
 function endQuiz() {
     clearInterval(timeInterval);
     // countdownEl.classList.add('hide');
@@ -130,17 +149,7 @@ function endQuiz() {
     finalScorePageEl.classList.remove('hide');
 }
 
-startQuizEl.addEventListener("click", function () {
-    let homeEl = document.getElementById('home');
-    homeEl.classList.add('hide');
-
-    questionEl.classList.remove('hide');
-
-    displayQuestion();
-
-    startTimer();
-});
-
+//Creating a function for the timer
 function startTimer() {
     timeInterval = setInterval(function () {
         if (timeLeft > 1) {
@@ -154,17 +163,13 @@ function startTimer() {
     }, 1000);
 }
 
-
-var optionElement = document.getElementsByClassName('option')
-var optionElements = document.getElementsByClassName('option');
-
+//Creating a for loop for the questions to continue 
 for (var i = 0; i < optionElements.length; i++) {
     optionElements[i].addEventListener('click', function (event) {
         let selectedOption = event.target.textContent;
         checkAnswer(selectedOption);
     });
 }
-
 
 
 initialsFormEl.addEventListener("submit", function (event) {
@@ -176,7 +181,7 @@ initialsFormEl.addEventListener("submit", function (event) {
     let initialsInput = initialsInputEl.value.trim();
 
     if (initialsInput === "") {
-        return; // Do nothing if initialsInput is empty
+        return; 
     }
 
     // Create a new score entry object 
@@ -192,10 +197,34 @@ initialsFormEl.addEventListener("submit", function (event) {
 
     // Redirect to the highscores.html page
     window.location.replace("highscores.html");
+
+    //Call the showHighscores function
+    showHighscores();
 });
 
 
+function showHighscores() {
+    // Retrieve highscores from local storage
+    let highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 
+    // Clear any existing content in the highscores list
+    highscoresListEl.innerHTML = "";
 
+    // Iterate through the highscores array
+    for (let index = 0; index < highscores.length; index++) {
+        // Get the current score entry
+        let scoreEntry = highscores[index];
 
+        // Create a new list item element
+        let listItem = document.createElement("li");
 
+        // Construct the text content for the list item
+        let textContent = (index + 1) + ". " + scoreEntry.initials;
+
+        // Set the text content of the list item
+        listItem.textContent = textContent;
+
+        // Append the list item to the highscoresListEl 
+        highscoresListEl.appendChild(listItem);
+    }
+};
