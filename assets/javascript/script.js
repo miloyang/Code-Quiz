@@ -1,4 +1,3 @@
-let quizQuestions_count = 0;
 let startQuizEl = document.querySelector("#start-button");
 let questionEl = document.querySelector("#question");
 let timerEl = document.getElementById('countdown');
@@ -9,10 +8,8 @@ let option3El = document.getElementById('option3');
 let option4El = document.getElementById('option4');
 let finalScoreEl = document.getElementById('final-score');
 let initialsFormEl = document.getElementById('initials-form');
-let initialsEl = document.getElementById('initials');
 let submitEl = document.getElementById('submit');
 let finalScorePageEl = document.getElementById('final-score-page');
-let countdownEl = document.getElementById('countdown');
 let highscoresListEl = document.getElementById('highscores-list');
 let initialsInputEl = document.getElementById('initials');
 
@@ -176,7 +173,7 @@ initialsFormEl.addEventListener("submit", function (event) {
     // Retrieve highscores from local storage and initialize if null
     let highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 
-    let initialsInput = initialsInputEl.value.trim(); // Use the correct element
+    let initialsInput = initialsInputEl.value.trim();
 
     if (initialsInput === "") {
         return; // Do nothing if initialsInput is empty
@@ -196,8 +193,6 @@ initialsFormEl.addEventListener("submit", function (event) {
     // Redirect to the highscores.html page
     window.location.replace("highscores.html");
 });
-
-
 
 
 
