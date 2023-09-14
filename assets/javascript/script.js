@@ -1,4 +1,4 @@
-//Selecting the elements by ids
+// Selecting the elements by ids
 let startQuizEl = document.querySelector("#start-button");
 let questionEl = document.querySelector("#question");
 let timerEl = document.getElementById('countdown');
@@ -14,8 +14,9 @@ let finalScorePageEl = document.getElementById('final-score-page');
 let highscoresListEl = document.getElementById('highscores-list');
 let initialsInputEl = document.getElementById('initials');
 let optionElements = document.getElementsByClassName('option');
+let resultEl = document.getElementById('result');
 
-//Setting the quiz questions, answers and options in an object
+// Setting the quiz questions, answers and options in an object
 let quizQuestions = [
     {
         id: 1,
@@ -90,14 +91,14 @@ let quizQuestions = [
     },
 ];
 
-//Setting the variables
+// Setting the variables
 var timeLeft = 60;
 var index = 0;
 var correctAnswers = 0;
 var timeInterval;
 var highscores = [];
 
-//Creating an event listener for when the user clicks on startQuiz Element
+// Creating an event listener for when the user clicks on startQuiz Element
 startQuizEl.addEventListener("click", function () {
     let homeEl = document.getElementById('home');
     homeEl.classList.add('hide');
@@ -109,7 +110,7 @@ startQuizEl.addEventListener("click", function () {
     startTimer();
 });
 
-//Creating a function to display questions when the startQuiz element is clicked on
+// Creating a function to display questions when the startQuiz element is clicked on
 function displayQuestion(event) {
     // Lets log the event to see which element we are clicking
     // console.log(event?.target);
@@ -124,12 +125,16 @@ function displayQuestion(event) {
     // console.log(event?.target.innerText);
 }
 
-//Creating a function to instruct what happens if the user clicks on correct or wrong answers.
+// Creating a function to instruct what happens if the user clicks on correct or wrong answers.
 function checkAnswer(selectedOption) {
     if (selectedOption === quizQuestions[index].answer) {
         correctAnswers++;
+        resultEl.classList.remove('hide');
+        resultEl.textContent = "Correct!"
     } else {
-        timeLeft -= 5;
+        timeLeft -= 10;
+        resultEl.classList.remove('hide');
+        resultEl.textContent = "Wrong!"
     }
 
     index++;
@@ -140,7 +145,7 @@ function checkAnswer(selectedOption) {
     }
 }
 
-//Creating a function when all questions have been answered
+// Creating a function when all questions have been answered
 function endQuiz() {
     clearInterval(timeInterval);
     // countdownEl.classList.add('hide');
@@ -149,7 +154,7 @@ function endQuiz() {
     finalScorePageEl.classList.remove('hide');
 }
 
-//Creating a function for the timer
+// Creating a function for the timer
 function startTimer() {
     timeInterval = setInterval(function () {
         if (timeLeft > 1) {
@@ -163,7 +168,7 @@ function startTimer() {
     }, 1000);
 }
 
-//Creating a for loop for the questions to continue 
+// Creating a for loop for the questions to continue 
 for (var i = 0; i < optionElements.length; i++) {
     optionElements[i].addEventListener('click', function (event) {
         let selectedOption = event.target.textContent;
@@ -198,7 +203,7 @@ initialsFormEl.addEventListener("submit", function (event) {
     // Redirect to the highscores.html page
     window.location.replace("highscores.html");
 
-    //Call the showHighscores function
+    // Call the showHighscores function
     showHighscores();
 });
 

@@ -1,3 +1,4 @@
+/* Setting common items for colors and fonts */
 :root {
     --white: #fff;
     --dark-purple: rgb(110, 1, 110);
@@ -52,11 +53,9 @@ p {
 
 .start-button,
 .clear-highscores-button,
-.go-back, .submit-button {
-    display: flex;
-    justify-content: center;
+.go-back,
+.submit-button {
     cursor: pointer;
-    text-align: center;
     font-family: var(--font);
     font-size: 20px;
     padding: 8px;
@@ -68,17 +67,27 @@ p {
     text-decoration: none;
 }
 
+.start-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Creating a hover function for the buttons */
 .start-button:hover,
 .clear-highscores-button:hover,
-.go-back:hover, .submit-button:hover {
+.go-back:hover,
+.submit-button:hover {
     background-color: var(--light-purple);
 }
 
 .button-container {
     display: flex;
-    flex: 0 0 50%;
+    justify-content: center;
+    align-items: center;
 }
 
+/* This class hides and displays sections when needed */
 .hide {
     display: none;
 }
@@ -93,13 +102,20 @@ p {
 }
 
 h2,
-h3 {
+h4 {
     font-family: var(--font);
     font-size: 30px;
     padding: 30px;
 }
 
 h3 {
+    font-family: var(--font);
+    font-style: italic;
+    font-size: 25px;
+    color: gray;
+}
+
+h4 {
     text-align: center;
 }
 
@@ -125,6 +141,11 @@ h3 {
 }
 
 .initials-form {
+    display: flex;
     justify-content: center;
     text-align: center;
+}
+
+.label {
+    align-items: center;
 }

@@ -32,7 +32,9 @@
             <h1 id="title">Coding Quiz Challenge</h1>
             <p id="para">Try to answer the following code-related questions within the time limit. Keep in mind that
                 incorrect answers will penalize your scorestime by ten seconds!</p>
-            <button class="start-button" id="start-button">Start Quiz</button>
+            <div class="start-button-container">
+                <button class="start-button" id="start-button">Start Quiz</button>
+            </div>
         </section>
 
         <section class="question-container">
@@ -45,6 +47,7 @@
                         <li id="option3" class="option">option 3</li>
                         <li id="option4" class="option">option 4</li>
                     </ul>
+                    <h3 class="hide result" id="result"></h3>
                 </div>
             </div>
         </section>
@@ -52,10 +55,10 @@
         <section>
             <div class="final-score-container">
                 <div class="hide final-score" id="final-score-page">
-                    <h3>All done!</h3>
+                    <h4>All done!</h4>
                     <p id="final-score">Your final score is 0.</p>
                     <form class="initials-form" id="initials-form">
-                        <label for="initials">Enter Initials: </label>
+                        <label class="label" for="initials">Enter Initials: </label>
                         <input type="text" id="initials">
                         <button class="submit-button" id="submit">Submit</button>
                     </form>
