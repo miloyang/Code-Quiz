@@ -21,7 +21,7 @@ When you click on the Start Quiz button, you will be presented with a multiple-c
 
 When you answer a question, you will be presented with another question along with the option that you either answered the previous question correctly or incorrectly. 
 
-When a question is answered incorrectly, a total of 5 seconds will be substracted from the time left.
+When a question is answered incorrectly, a total of 10 seconds will be substracted from the time left.
 
 When all questions are answered or the timer reaches 0, then the game is over. 
 
